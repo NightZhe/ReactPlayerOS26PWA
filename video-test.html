@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safari Video Test</title>
+    <style>
+        .video-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        video {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="video-container">
+        <h1>Video Playback Test</h1>
+
+        <!-- Standard HTML5 Video with multiple sources -->
+        <h2>Test 1: Multiple formats</h2>
+        <video controls playsinline>
+            <source src="video.mp4" type="video/mp4">
+            <source src="video.webm" type="video/webm">
+            Your browser does not support HTML5 video.
+        </video>
+
+        <!-- Safari-optimized video -->
+        <h2>Test 2: Safari optimized (H.264)</h2>
+        <video controls playsinline>
+            <source src="video-h264.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+    </div>
+
+    <script>
+        // Check if video is playable
+        const videos = document.querySelectorAll('video');
+        videos.forEach(video => {
+            video.addEventListener('error', (e) => {
+                console.error('Video error:', e);
+                const parent = video.parentElement;
+                const errorMsg = document.createElement('p');
+                errorMsg.style.color = 'red';
+                errorMsg.textContent = `Error: ${video.error ? video.error.message : 'Unknown video error'}`;
+                parent.appendChild(errorMsg);
+            });
+        });
+    </script>
+</body>
+
+</html>
