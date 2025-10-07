@@ -32,7 +32,5 @@ export default defineConfig({
     }),
   ],
   server: {
-    host: '0.0.0.0', // 支援 Docker 容器內訪問
-    port: 5173,
-  }
+    host: true}
 })
